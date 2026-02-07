@@ -6,7 +6,7 @@
 /*   By: akkim <akkim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 18:59:32 by akkim             #+#    #+#             */
-/*   Updated: 2026/02/07 19:12:31 by akkim            ###   ########.fr       */
+/*   Updated: 2026/02/07 19:55:52 by akkim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ void	mini_env(t_info_env *env)
 		ft_printf("%s=%s\n", e->key, e->value);
 		e = e->next;
 	}
-	ft_printf("_=/usr/bin/env\n");
+	// ft_printf("_=/usr/bin/env\n");
 }
