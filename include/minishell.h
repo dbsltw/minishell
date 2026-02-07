@@ -6,7 +6,7 @@
 /*   By: akkim <akkim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 16:28:09 by akkim             #+#    #+#             */
-/*   Updated: 2026/02/07 16:21:12 by akkim            ###   ########.fr       */
+/*   Updated: 2026/02/07 18:31:41 by akkim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,18 @@
 
 typedef struct l_env
 {
-	char	**path;
-	char	*user;
-	char	*pwd;
-	char	*old_pwd;
-	int		exit_code;
+	char			*key;
+	char			*value;
+	struct l_env	*next;
 }	t_env;
 
-void mini_echo(char *str, t_env *env);
+typedef struct l_info_env
+{
+	t_env	*head;
+	int		exit_code;
+}		t_info_env;
+
+void	init_env(t_info_env *env, char **envp);
+char	*get_env_val(t_env *head, char *key);
 
 #endif

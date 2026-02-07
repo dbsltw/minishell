@@ -1,0 +1,5 @@
+# 실행파일 제외
+minishell
+
+# vscode 폴더 제외
+.vscode/
