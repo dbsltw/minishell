@@ -6,7 +6,7 @@
 /*   By: akkim <akkim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 15:02:03 by akkim             #+#    #+#             */
-/*   Updated: 2026/02/07 17:16:42 by akkim            ###   ########.fr       */
+/*   Updated: 2026/02/07 18:25:39 by akkim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,11 @@ char	*get_env_value(char **envp, char *str)
 
 int	main(int argc, char **argv, char **envp)
 {
+	t_info_env env;
 	(void)argc;
 	(void)argv;
 
-	ft_printf("%s", get_env_value(envp, "USER"));
-	// mini_echo("hello\n", envp);
+	init_env(&env, envp);
+	ft_printf("%s", env.head->value);
+	// ft_printf("%s", get_env_value(envp, "USER"));
 }
