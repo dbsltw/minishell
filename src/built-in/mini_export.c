@@ -6,7 +6,7 @@
 /*   By: akkim <akkim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 19:13:55 by akkim             #+#    #+#             */
-/*   Updated: 2026/02/10 16:07:55 by akkim            ###   ########.fr       */
+/*   Updated: 2026/02/10 19:08:34 by akkim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	mini_export(t_info_env *env, char *str)
 	char	*key;
 	char	*value;
 
+	if (!str)
+		return ;
 	eq = ft_strchr(str, '=');
 	key = ft_substr(str, 0, eq - str);
 	if (!chk_key(key))
