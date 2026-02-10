@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_export.c                                      :+:      :+:    :+:   */
+/*   mini_unset.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akkim <akkim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/07 19:13:55 by akkim             #+#    #+#             */
-/*   Updated: 2026/02/10 20:09:38 by akkim            ###   ########.fr       */
+/*   Created: 2026/02/10 19:04:34 by akkim             #+#    #+#             */
+/*   Updated: 2026/02/10 20:14:18 by akkim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "env.h"
 
-// Check if the first character is an alphabet or '_'
 static int	chk_key(t_info_env *env, char *key)
 {
 	if (ft_isalpha(key[0]) || key[0] == '_')
@@ -24,31 +23,20 @@ static int	chk_key(t_info_env *env, char *key)
 	return (0);
 }
 
-void	mini_export(t_info_env *env, char *str)
+// remove node for key and free node
+void	mini_unset(t_info_env *env, char *key)
 {
 	t_env	*node;
-	char	*eq;
-	char	*key;
-	char	*value;
 
-	if (!str)
+	if (!key)
 	{
 		env->exit_code = 0;
 		return ;
 	}
-	eq = ft_strchr(str, '=');
-	key = ft_substr(str, 0, eq - str);
 	if (!chk_key(env, key))
 		return ;
-	value = ft_strdup(eq + 1);
 	node = find_env_node(env->head, key);
 	if (node != NULL)
-		node->value = value;
-	else
-	{
-		node = new_env_node(key, value);
-		env_add_back(&env->head, node);
-	}
-	free(key);
-	free(value);
+		remove_env(env, key);
+	return ;
 }

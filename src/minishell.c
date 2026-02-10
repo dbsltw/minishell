@@ -6,12 +6,12 @@
 /*   By: akkim <akkim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 15:02:03 by akkim             #+#    #+#             */
-/*   Updated: 2026/02/10 16:08:13 by akkim            ###   ########.fr       */
+/*   Updated: 2026/02/10 20:12:08 by akkim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
+#include "env.h"
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -20,7 +20,9 @@ int	main(int argc, char **argv, char **envp)
 	(void)argc;
 	(void)argv;
 	init_env(&env, envp);
-	mini_export(&env, "_ak=user");
-	ft_printf("%s\n", get_env_val(env.head, "_ak"));
-	// ft_printf("%s\n", get_env_val(env.head, "USER"), ); // test
+	mini_export(&env, "name=akkim");
+	ft_printf("%s\n", get_env_val(env.head, "name"));
+	mini_unset(&env, "name");
+	ft_printf("%s\n", get_env_val(env.head, "name"));
+	all_free_env(env.head);
 }
