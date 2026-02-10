@@ -6,7 +6,7 @@
 /*   By: akkim <akkim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 19:13:55 by akkim             #+#    #+#             */
-/*   Updated: 2026/02/10 19:35:41 by akkim            ###   ########.fr       */
+/*   Updated: 2026/02/10 20:09:38 by akkim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,6 @@ void	mini_export(t_info_env *env, char *str)
 		node = new_env_node(key, value);
 		env_add_back(&env->head, node);
 	}
+	free(key);
+	free(value);
 }
