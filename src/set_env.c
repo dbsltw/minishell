@@ -6,7 +6,7 @@
 /*   By: akkim <akkim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 17:26:48 by akkim             #+#    #+#             */
-/*   Updated: 2026/02/10 19:01:52 by akkim            ###   ########.fr       */
+/*   Updated: 2026/02/10 20:02:12 by akkim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,3 +102,45 @@ char	*get_env_val(t_env *head, char *key)
 // 환경변수 추가
 
 // 삭제
+void	remove_env(t_info_env *env, char *key)
+{
+	t_env	*curr;
+	t_env	*prev;
+
+	curr = env->head;
+	prev = NULL;
+	while (curr)
+	{
+		if (ft_strncmp(curr->key, key, ft_strlen(key) + 1) == 0)
+		{
+			if (prev)
+				prev->next = curr->next;
+			else
+				env->head = curr->next;
+			free(curr->key);
+			if (curr->value)
+				free(curr->value);
+			free(curr);
+			return ;
+		}
+		prev = curr;
+		curr = curr->next;
+	}
+}
+
+// all free
+void	all_free_env(t_env *head)
+{
+	t_env	*tmp;
+
+	while (head)
+	{
+		tmp = head->next;
+		if (head->key)
+			free(head->key);
+		if (head->value)
+			free(head->value);
+		free(head);
+		head = tmp;
+	}
+}
