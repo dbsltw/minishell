@@ -6,7 +6,7 @@
 /*   By: akkim <akkim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 19:13:55 by akkim             #+#    #+#             */
-/*   Updated: 2026/02/10 19:08:34 by akkim            ###   ########.fr       */
+/*   Updated: 2026/02/10 19:35:41 by akkim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 #include "env.h"
 
 // Check if the first character is an alphabet or '_'
-static int	chk_key(char *key)
+static int	chk_key(t_info_env *env, char *key)
 {
 	if (ft_isalpha(key[0]) || key[0] == '_')
+	{
+		env->exit_code = 1;
 		return (1);
+	}
 	return (0);
 }
 
@@ -29,10 +32,13 @@ void	mini_export(t_info_env *env, char *str)
 	char	*value;
 
 	if (!str)
+	{
+		env->exit_code = 0;
 		return ;
+	}
 	eq = ft_strchr(str, '=');
 	key = ft_substr(str, 0, eq - str);
-	if (!chk_key(key))
+	if (!chk_key(env, key))
 		return ;
 	value = ft_strdup(eq + 1);
 	node = find_env_node(env->head, key);
