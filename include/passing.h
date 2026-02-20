@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.h                                              :+:      :+:    :+:   */
+/*   passing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akkim <akkim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/19 16:28:09 by akkim             #+#    #+#             */
-/*   Updated: 2026/02/20 19:46:13 by akkim            ###   ########.fr       */
+/*   Created: 2026/02/20 18:00:44 by akkim             #+#    #+#             */
+/*   Updated: 2026/02/20 19:46:43 by akkim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENV_H
-# define ENV_H
+#ifndef PASSING_H
+# define PASSING_H
 
 # include "minishell.h"
 
-// init env & node
-void	init_env(t_info_env *env, char **envp);
-t_env	*new_env_node(char *key, char *value);
+typedef struct l_simple_command
+{
+	char	*cmd;
+	char	**args;
+	//	Redrect *redirects
+}	t_simple_command;
 
-// add & remove env node
-void	env_add_back(t_env **head, t_env *new);
-void	remove_env(t_info_env *env, char *key);
-
-// find & get env
-t_env	*find_env_node(t_env *head, char *key);
-char	*get_env_val(t_env *head, char *key);
-
-// free all env
-void	all_free_env(t_env *head);
+t_simple_command	*passing_command(char *line);
+void	builin_handler(t_info_env *env, t_simple_command *simple_command);
 
 #endif
